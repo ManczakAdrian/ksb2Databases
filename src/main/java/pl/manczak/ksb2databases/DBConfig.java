@@ -1,6 +1,7 @@
 package pl.manczak.ksb2databases;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -13,21 +14,20 @@ import javax.sql.DataSource;
 @Configuration
 public class DBConfig {
 
-    @Bean
-    public DataSource getDataSource(){
-        DataSourceBuilder dataSourceBuilder=
-                DataSourceBuilder.create();
-        dataSourceBuilder.url("jdbc:mysql://remotemysql.com :3306/ZQxoHb0Hbx");
-        dataSourceBuilder.username("ZQxoHb0Hbx");
-        dataSourceBuilder.password("RJn6pV5leT");
-        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
-        return dataSourceBuilder.build();
+    private DataSource dataSource;
+    //datasource są zaczytywane z konfiguracji application.properties
+
+    @Autowired
+    public DBConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
+
+
 
     @Bean
     public JdbcTemplate getJdbcTemplate(){
 
-        return new JdbcTemplate(getDataSource());
+        return new JdbcTemplate(dataSource);
     }
 
     @EventListener (ApplicationReadyEvent.class)
