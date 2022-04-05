@@ -1,0 +1,8 @@
+2022-04-03 23:54:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "VIDEOS" nie istnieje
+Table "VIDEOS" not found; SQL statement:
+INSERT INTO videos VALUES (?,?,?) [42102-200]
+2022-04-04 00:10:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "VIDEOS" nie istnieje
+Table "VIDEOS" not found; SQL statement:
+INSERT INTO videos VALUES (?,?,?) [42102-200]
